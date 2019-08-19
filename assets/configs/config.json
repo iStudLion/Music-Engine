@@ -1,0 +1,17 @@
+{
+  "options": {
+    "downloadPath": "C:\\Users\\Casi Nobo\\Downloads\\Music Engine"
+  },
+  "API": {
+    "youtube": {
+      "key": "AIzaSyCSMzuoUIsXCfCI-fiJ09dsyr10SxRP9Ro",
+      "old-key": "AIzaSyBpjRF-I-b2MrGCCHsNruTRlqPxpQh-GaU"
+    },
+    "genius": {
+      "access_token": "GDRgjPTonovPZNSxNuSH2b3PtpSUQkFeceK58kp1uPXYz3LMH7yw01QGgY5-Kpjv"
+    },
+    "musixmatch": {
+      "key": "60a805c35785d5c78302734db2d722fb"
+    }
+  }
+}

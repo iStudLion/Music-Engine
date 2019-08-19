@@ -1,0 +1,245 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Music Engine</title>
+        <link rel="stylesheet" type="text/css" href="../css/loader.css">
+    </head>
+    <body class="no-select">
+        <div class="menu">
+            <div class="item">Reload <span>Ctrl+R</span></div>
+            <div class="item">Item #2</div>
+            <div class="item">Item #3</div>
+            <div class="divider"></div>
+            <div class="item">Item #4</div>
+        </div>
+
+        <div class="loadBar"></div>
+        <div class="dash">
+            <p class="no-select">Music Engine</p>
+            <input type="text" placeholder="Search..." id="urlInput">
+        </div>
+        <div class="videos">
+                <div class="vid loading cursor-default">
+                    <img>
+                    <div>
+                        <p class="title"></p>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="vid loading cursor-default">
+                    <img>
+                    <div>
+                        <p class="title"></p>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="vid loading cursor-default">
+                    <img>
+                    <div>
+                        <p class="title"></p>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="vid loading cursor-default">
+                    <img>
+                    <div>
+                        <p class="title"></p>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="vid loading cursor-default">
+                    <img>
+                    <div>
+                        <p class="title"></p>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="vid loading cursor-default">
+                    <img>
+                    <div>
+                        <p class="title"></p>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="vid loading cursor-default">
+                    <img>
+                    <div>
+                        <p class="title"></p>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="vid loading cursor-default">
+                    <img>
+                    <div>
+                        <p class="title"></p>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="vid loading cursor-default">
+                    <img>
+                    <div>
+                        <p class="title"></p>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="vid loading cursor-default">
+                    <img>
+                    <div>
+                        <p class="title"></p>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="vid loading cursor-default">
+                    <img>
+                    <div>
+                        <p class="title"></p>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="vid loading cursor-default">
+                    <img>
+                    <div>
+                        <p class="title"></p>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="vid loading cursor-default">
+                    <img>
+                    <div>
+                        <p class="title"></p>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="vid loading cursor-default">
+                    <img>
+                    <div>
+                        <p class="title"></p>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="vid loading cursor-default">
+                    <img>
+                    <div>
+                        <p class="title"></p>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="vid loading cursor-default">
+                    <img>
+                    <div>
+                        <p class="title"></p>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="vid loading cursor-default">
+                    <img>
+                    <div>
+                        <p class="title"></p>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="vid loading cursor-default">
+                    <img>
+                    <div>
+                        <p class="title"></p>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="vid loading cursor-default">
+                    <img>
+                    <div>
+                        <p class="title"></p>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="vid loading cursor-default">
+                    <img>
+                    <div>
+                        <p class="title"></p>
+                        <span></span>
+                    </div>
+                </div>
+        </div>
+
+        <script>
+            if (typeof module === 'object') {
+                window.module = module;
+                module = undefined;
+            }
+        </script>
+        <script src="../js/jquery.min.js"></script>
+        <script src="../js/jquery-ui.min.js"></script>
+        <script src="../js/youtubeSearch.js"></script>
+        <script src="../js/index.js"></script>
+        <script src="../js/keybinds.js"></script>
+        <script>
+            var electron = require('electron');
+
+
+            /**
+             *  Register keybinds
+            **/
+            try {
+                // inspect element
+                // add password
+                keybinds.add([{ "keyCode": 9, "ctrl": true, "shift": true }], function() {
+                    electron.ipcRenderer.send("toggle", "developerTools");
+                });
+            } catch(e) {
+                console.error(e);
+            }
+            
+            try {
+                // quick search
+                keybinds.add([{ "keyCode": 5, "ctrl": true }], function() {
+                    $("input#search").focus();
+                    $("input#search").select();
+                });
+            } catch(e) {
+                console.error(e);
+            }
+            
+            try {
+                // reload
+                // leave only for beta testing
+                keybinds.add([{ "keyCode": 18, "ctrl": true }], function() {
+                    location.reload();
+                });
+            } catch(e) {
+                console.error(e);
+            }
+            
+            try {
+                // search submit
+                keybinds.add([{ "keyCode": 13 }], function() {
+                    if($("input#urlInput").val().length > 0) {
+                        search($("input#urlInput").val(), null, {"success": function(data) {
+                            window.searchQuery = $("input#urlInput").val();
+                            $("body div.videos").empty();
+                            try {
+                                var response = data;
+                                for(var i = 0; i < response.items.length; i++) {
+                                    if(response.items[i].id.kind != "youtube#video") continue;
+                                    var id = response.items[i].id.videoId;
+                                    var item = response.items[i].snippet;
+                                    var thumbnail = item.thumbnails.high.url ?  item.thumbnails.high.url : item.thumbnails.medium.url ? item.thumbnails.medium.url : item.thumbnails.defaut.url ? item.thumbnails.default.url : "";
+                                    var time = timeAgo(item.publishedAt);
+                                    window.nextPageToken = response.nextPageToken ?  response.nextPageToken : null;
+                                    $("body div.videos").append("<div class=\"vid\" uvid=\""+id+"\"><img class=\"cursor-pointer\" style=\"background-image: url('"+thumbnail+"');\"><div><p class=\"title cursor-pointer\">"+item.title+"</p><span class=\"cursor-default\"><p class=\"channel\">"+item.channelTitle+"</p><p class=\"time\">"+time+"</p></span></div></div>");
+                                }
+                            } catch(err) {
+                                console.error(err);
+                            }
+                        }});
+                    }
+                });
+            } catch(e) {
+                console.error(e);
+            }
+        </script>
+        <script>
+            if (window.module) module = window.module;
+        </script>
+    </body>
+</html>

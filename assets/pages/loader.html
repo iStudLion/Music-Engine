@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Music Engine</title>
+        <link rel="stylesheet" type="text/css" href="../css/loader.css">
+    </head>
+    <body class="loader no-select" type="default">
+        <div class="loader"></div>
+        <p id="loader">Loading...</p>
+
+        <script>
+            if (typeof module === 'object') {
+                window.module = module;
+                module = undefined;
+            }
+        </script>
+        <script src="../js/jquery.min.js"></script>
+        <script src="../js/jquery-ui.min.js"></script>
+        <script>
+            const { ipcRenderer } = require('electron');
+            $(document).ready(function() {
+
+                setTimeout(() => {
+                    sendRequest();
+                }, 3000);
+
+                function sendRequest() {
+                    ipcRenderer.send("ready", true);
+                    // $.ajax("https://api.musicengine.co/internet-check", {
+                    //     method: "GET",
+                    //     success: function(data) {
+                    //         if(data.statusCode === 200) {
+                    //             if($('body.loader').attr("type") != "default") {
+                    //                 $('body.loader').animate({backgroundColor: '#3A506B'}, 'fast');
+                    //                 $('body.loader div.loader').animate({borderColor: 'rgba(28, 37, 65, 0.3)'}, 'fast');
+                    //                 $('body.loader div.loader').animate({borderTopColor: '#5BC0BE'}, 'fast');
+                    //                 $('body.loader').attr("default");
+                    //             } else $('body.loader p#loader').text("Launching...");
+
+                    //             ipcRenderer.send("ready", true);
+                    //         } else {
+                    //             if($('body.loader').attr("type") != "error") {
+                    //                 $('body.loader').animate({backgroundColor: '#A7333F'}, 'fast');
+                    //                 $('body.loader div.loader').animate({borderColor: 'rgba(116, 18, 29, 0.3)'}, 'fast');
+                    //                 $('body.loader div.loader').animate({borderTopColor: '#EE3A43'}, 'fast');
+                    //                 $('body.loader p#loader').text("No Connection!");
+                    //                 $('body.loader').attr("type", "error");
+                    //             }
+
+                    //             setTimeout(() => {
+                    //                 sendRequest();
+                    //             }, 3000);
+                    //         }
+                    //     },
+                    //     error: function() {
+                    //         if($('body.loader').attr("type") != "error") {
+                    //             $('body.loader').animate({backgroundColor: '#A7333F'}, 'fast');
+                    //             $('body.loader div.loader').animate({borderColor: 'rgba(116, 18, 29, 0.3)'}, 'fast');
+                    //             $('body.loader div.loader').animate({borderTopColor: '#EE3A43'}, 'fast');
+                    //             $('body.loader p#loader').text("No Connection!");
+                    //             $('body.loader').attr("type", "error");
+                    //         }
+
+                    //         setTimeout(() => {
+                    //             sendRequest();
+                    //         }, 3000);
+                    //     }
+                    // })
+                }
+            });
+        </script>
+        <script>
+            if (window.module) module = window.module;
+        </script>
+    </body>
+</html>
