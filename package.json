@@ -1,0 +1,61 @@
+{
+  "name": "musicengine",
+  "version": "19.17.0",
+  "description": "Music Engine, YouTube music downloader, lyrics, and mp3 meta writer.",
+  "main": "index.js",
+  "homepage": "https://musicengine.co/",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/iStudLion/Music-Engine"
+  },
+  "build": {
+    "appId": "co.musicengine.app",
+    "productName": "Music Engine",
+    "win": {
+      "target": "nsis",
+      "icon": "assets/img/favicon.ico"
+    },
+    "protocols": [{
+      "name": "musicengine",
+      "role": "Viewer",
+      "schemes": ["musicengine"]
+    }],
+    "nsis": {
+      "installerIcon": "assets/img/favicon.ico",
+      "uninstallerIcon": "assets/img/favicon.ico",
+      "license": "LICENSE",
+      "runAfterFinish": true
+    }
+  },
+  "scripts": {
+    "start": "electron index.js",
+    "build": "electron-packager . musicengine",
+    "package-mac": "electron-packager . Music Engine --overwrite --asar=true --platform=darwin --arch=x64 --icon=img/icon.png --prune=true --out=release-builds",
+    "package-win": "electron-packager . musicengine --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/img/favicon.ico --prune=true --out=release-builds --version-string.CompanyName=\"Music Engine\" --version-string.FileDescription=\"Music Engine\" --version-string.ProductName=\"Music Engine\"",
+    "package-lin": "electron-packager . Music Engine --overwrite --asar=true --platform=linux --arch=x64 --icon=img/icon.png --prune=true --out=release-builds"
+  },
+  "keywords": [
+    "Music",
+    "Download",
+    "Mp3"
+  ],
+  "author": {
+    "name": "iStudLion",
+    "email": "contact@musicengine.co",
+    "url": "https://github.com/iStudLion"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "browser-id3-writer": "^4.1.0",
+    "electron": "^5.0.6",
+    "ffmetadata": "^1.5.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "npm": "^6.10.0",
+    "youtube-info": "^1.3.2",
+    "ytdl-core": "^0.29.2"
+  },
+  "devDependencies": {
+    "asar": "^2.0.1",
+    "electron-packager": "^14.0.1"
+  }
+}
